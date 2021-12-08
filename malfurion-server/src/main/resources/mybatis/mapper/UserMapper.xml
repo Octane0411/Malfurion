@@ -2,4 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.malfurion.malfurionserver.system.mapper.UserMapper">
 
+    <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="userId">
+        insert into malfurion.user(user_name, nick_name, user_type, email, phone, avatar, password, salt, status, login_ip, login_date, create_by, update_by)
+        values (#{userName}, #{nickName}, #{userType}, #{email}, #{phone}, #{avatar}, #{password}, #{salt}, #{status}, #{loginIp}, #{loginDate}, #{createBy}, #{updateBy});
+    </insert>
+
+    <select id="selectUserList" resultType="User">
+        select *
+        from malfurion.user;
+    </select>
 </mapper>

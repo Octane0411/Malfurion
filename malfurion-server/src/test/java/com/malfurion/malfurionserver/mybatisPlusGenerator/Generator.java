@@ -30,7 +30,7 @@ public class Generator {
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");///Users/octane/Projects/Malfurion/Malfurion-Server
 
-        gc.setOutputDir(projectPath + "/src/min/java");
+        gc.setOutputDir(projectPath + "/src/main/java");
 
         gc.setAuthor("octane");
         gc.setOpen(false);
@@ -43,10 +43,10 @@ public class Generator {
 
         //设置数据源
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/malfurion?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=Asia/Shanghai\n");
+        dsc.setUrl("jdbc:mysql://localhost:3306/malfurion?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimeZone=Asia/Shanghai&useSSL=false");
         dsc.setUsername("root");
         dsc.setPassword("1234ever.A");
-        dsc.setDriverName("com.mysql.cj.jdbc.driver");
+        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setDbType(DbType.MYSQL);
         mpg.setDataSource(dsc);
 
@@ -64,7 +64,7 @@ public class Generator {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-        strategy.setSuperEntityClass("com.malfurion.malfurionserver.common.cor.domain.entity.SuperEntity");
+        strategy.setSuperEntityClass("com.malfurion.malfurionserver.common.core.domain.entity.SuperEntity");
         strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);
         strategy.setLogicDeleteFieldName("deleted");
@@ -72,7 +72,7 @@ public class Generator {
         strategy.setSuperControllerClass("com.malfurion.malfurionserver.common.core.controller.SuperController");
         // 写于父类中的公共字段
         strategy.setSuperEntityColumns("create_by", "create_time", "update_by", "update_time");
-        strategy.setInclude("user,tig,category,article_info,article_content,article.comment,article.mark".split(","));
+        strategy.setInclude("user,tag,category,article_info,article_content,article_comment,article_mark".split(","));
 
         //自动填充策略
         TableFill createTime = new TableFill("create_time", FieldFill.INSERT);

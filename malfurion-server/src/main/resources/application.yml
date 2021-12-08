@@ -1,16 +1,14 @@
 server:
   port: 8080
 
-mybatis:
-  mapper-locations: classpath:mybatis/mapper/**.xml
-  configLocation: classpath:mybatis/mybatis-config.xml
-  type-aliases-package: com.malfurion.malfurionserver.**.entity
 
 mybatis-plus:
   global-config:
     db-config:
       logic-delete-value: 1
       logic-not-delete-value: 0
+  mapper-locations: classpath:mybatis/mapper/**.xml
+  type-aliases-package: com.malfurion.malfurionserver.**.entity
 
 # PageHelper分页插件
 pagehelper:
@@ -20,6 +18,43 @@ pagehelper:
 
 # Spring配置
 spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/malfurion?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimeZone=Asia/Shanghai&useSSL=false
+    username: root
+    password: 1234ever.A
+    type: com.alibaba.druid.pool.DruidDataSource
+    #SpringBoot默认是不注入这些的，需要自己绑定
+    #druid数据源专有配置
+    druid:
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      useGlobalDataSourceStat: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /duird/*
+        login-username: admin
+        login-password: 123
+
+
+          #配置监控统计拦截的filters，stat：监控统计、log4j：日志记录、wall：防御sql注入
+        #如果允许报错，java.lang.ClassNotFoundException: org.apache.Log4j.Properity
+        #则导入log4j 依赖就行
+      #autoFilters: stat,wall,log4j
+
+
+
   # 资源信息
   profiles:
     active: dev
@@ -66,3 +101,5 @@ token:
   secret: abcdefghijklmnopqrstuvwxyz
   # 令牌有效期（默认30分钟）
   expireTime: 30
+
+

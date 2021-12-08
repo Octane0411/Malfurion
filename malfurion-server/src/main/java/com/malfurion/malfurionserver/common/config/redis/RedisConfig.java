@@ -1,4 +1,4 @@
-package com.ruoyi.framework.config;
+package com.malfurion.malfurionserver.common.config.redis;
 
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
@@ -16,8 +16,6 @@ import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator
 
 /**
  * redis配置
- * 
- * @author ruoyi
  */
 @Configuration
 @EnableCaching

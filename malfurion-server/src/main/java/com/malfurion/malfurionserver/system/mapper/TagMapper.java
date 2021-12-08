@@ -2,6 +2,7 @@ package com.malfurion.malfurionserver.system.mapper;
 
 import com.malfurion.malfurionserver.system.entity.Tag;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author octane
  * @since 2021-12-04
  */
+@Mapper
 public interface TagMapper extends BaseMapper<Tag> {
 
 }

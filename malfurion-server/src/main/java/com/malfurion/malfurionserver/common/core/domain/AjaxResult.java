@@ -1,13 +1,13 @@
-package com.ruoyi.common.core.domain;
+package com.malfurion.malfurionserver.common.core.domain;
+
+import com.malfurion.malfurionserver.common.constant.HttpStatus;
+import com.malfurion.malfurionserver.common.utils.StringUtils;
 
 import java.util.HashMap;
-import com.ruoyi.common.constant.HttpStatus;
-import com.ruoyi.common.utils.StringUtils;
+
 
 /**
  * 操作消息提醒
- * 
- * @author ruoyi
  */
 public class AjaxResult extends HashMap<String, Object>
 {

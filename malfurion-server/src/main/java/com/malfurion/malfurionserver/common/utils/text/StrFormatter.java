@@ -1,11 +1,10 @@
-package com.ruoyi.common.core.text;
+package com.malfurion.malfurionserver.common.utils.text;
 
-import com.ruoyi.common.utils.StringUtils;
+
+import com.malfurion.malfurionserver.common.utils.StringUtils;
 
 /**
  * 字符串格式化
- * 
- * @author ruoyi
  */
 public class StrFormatter
 {

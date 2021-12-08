@@ -1,11 +1,9 @@
-package com.ruoyi.common.constant;
+package com.malfurion.malfurionserver.common.constant;
 
 import io.jsonwebtoken.Claims;
 
 /**
  * 通用常量信息
- * 
- * @author ruoyi
  */
 public class Constants
 {

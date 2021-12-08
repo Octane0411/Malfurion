@@ -1,9 +1,13 @@
 package com.malfurion.malfurionserver.system.service.impl;
 
+import com.malfurion.malfurionserver.system.dao.ArticleContentDao;
+import com.malfurion.malfurionserver.system.dao.impl.ArticleInfoDaoImpl;
 import com.malfurion.malfurionserver.system.entity.ArticleContent;
+import com.malfurion.malfurionserver.system.entity.ArticleInfo;
 import com.malfurion.malfurionserver.system.mapper.ArticleContentMapper;
 import com.malfurion.malfurionserver.system.service.ArticleContentService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +20,44 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ArticleContentServiceImpl extends ServiceImpl<ArticleContentMapper, ArticleContent> implements ArticleContentService {
+    @Autowired
+    ArticleContentDao articleContentDao;
 
+    @Autowired
+    ArticleInfoDaoImpl articleInfoDao;
+
+    @Override
+    public String insertArticleContent(ArticleContent articleContent) {
+        String msg = "";
+        ArticleInfo articleInfo = articleInfoDao.selectArticleInfoById(articleContent.getInfoId());
+        if (articleInfo == null) {
+            msg = "没有找到对应文章信息";
+        } else {
+            ArticleContent articleContent1 = articleContentDao.selectArticleContentById(articleContent.getContentId());
+            if (articleContent1 != null) {
+                msg = "请发送更新请求";
+            } else {
+                int flag = articleContentDao.insertArticleContent(articleContent);
+                if (flag <= 0) {
+                    msg = "插入时发生错误";
+                }
+            }
+        }
+        return msg;
+    }
+
+    @Override
+    public String uploadArticleContent(ArticleContent articleContent) {
+        String msg = "";
+        ArticleInfo articleInfo = articleInfoDao.selectArticleInfoById(articleContent.getInfoId());
+        if (articleInfo == null) {
+            msg = "没有找到对应文章信息";
+        } else {
+            int flag = articleContentDao.updateArticleContent(articleContent);
+            if (flag <= 0) {
+                msg = "更新时发生错误";
+            }
+        }
+        return msg;
+    }
 }

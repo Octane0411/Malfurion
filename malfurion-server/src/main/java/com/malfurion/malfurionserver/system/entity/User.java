@@ -52,9 +52,6 @@ public class User extends SuperEntity {
     @ApiModelProperty(value = "密码")
     private String password;
 
-    @ApiModelProperty(value = "密码加密")
-    private String salt;
-
     @ApiModelProperty(value = "账号状态0停用1可用")
     private String status;
 
@@ -63,11 +60,6 @@ public class User extends SuperEntity {
 
     @ApiModelProperty(value = "最后登录时间")
     private Date loginDate;
-
-    private Integer deleted;
-
-    @TableLogic
-    private Integer version;
 
 
 }

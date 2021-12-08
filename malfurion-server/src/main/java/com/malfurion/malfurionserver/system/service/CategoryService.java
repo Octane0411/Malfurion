@@ -2,6 +2,9 @@ package com.malfurion.malfurionserver.system.service;
 
 import com.malfurion.malfurionserver.system.entity.Category;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.malfurion.malfurionserver.system.entity.Tag;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface CategoryService extends IService<Category> {
 
+    String insertCategory(Category category);
+
+    List<Category> selectCategoryList();
 }

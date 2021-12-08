@@ -1,9 +1,13 @@
 package com.malfurion.malfurionserver.admin.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.malfurion.malfurionserver.common.core.domain.AjaxResult;
+import com.malfurion.malfurionserver.common.utils.StringUtils;
+import com.malfurion.malfurionserver.system.entity.ArticleInfo;
+import com.malfurion.malfurionserver.system.service.impl.ArticleInfoServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
 import com.malfurion.malfurionserver.common.core.controller.SuperController;
 
 /**
@@ -18,5 +22,13 @@ import com.malfurion.malfurionserver.common.core.controller.SuperController;
 @RequestMapping("/article-info")
 public class ArticleInfoController extends SuperController {
 
+    @Autowired
+    ArticleInfoServiceImpl articleInfoService;
+
+    @PostMapping("")
+    public AjaxResult insertArticleInfo(@RequestBody ArticleInfo articleInfo) {
+        String msg = articleInfoService.insertArticleInfo(articleInfo);
+        return StringUtils.isEmpty(msg) ? AjaxResult.success() : AjaxResult.error(msg);
+    }
 }
 

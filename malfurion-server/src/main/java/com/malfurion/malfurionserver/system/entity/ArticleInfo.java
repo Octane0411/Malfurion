@@ -57,10 +57,6 @@ public class ArticleInfo extends SuperEntity {
     @ApiModelProperty(value = "评论量")
     private Integer comments;
 
-    private Integer deleted;
-
-    @TableLogic
-    private Integer version;
 
 
 }

@@ -1,2 +1,4 @@
-package com.malfurion.malfurionserver.common.config.druid;public class DruidConfig {
+package com.malfurion.malfurionserver.common.config.druid;
+
+public class DruidConfig {
 }

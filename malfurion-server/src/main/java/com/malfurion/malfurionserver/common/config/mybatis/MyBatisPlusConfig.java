@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@MapperScan("com.malfurion.system.mapper")
+@MapperScan("com.malfurion.malfurionserver.system.mapper")
 public class MyBatisPlusConfig {
     //注册乐观锁插件
     @Bean

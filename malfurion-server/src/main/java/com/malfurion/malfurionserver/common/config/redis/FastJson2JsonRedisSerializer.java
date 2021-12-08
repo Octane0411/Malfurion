@@ -1,4 +1,4 @@
-package com.ruoyi.framework.config;
+package com.malfurion.malfurionserver.common.config.redis;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
@@ -13,8 +13,6 @@ import java.nio.charset.Charset;
 
 /**
  * Redis使用FastJson序列化
- * 
- * @author ruoyi
  */
 public class FastJson2JsonRedisSerializer<T> implements RedisSerializer<T>
 {

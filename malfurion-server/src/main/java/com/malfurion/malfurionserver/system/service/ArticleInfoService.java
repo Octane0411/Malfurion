@@ -12,5 +12,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2021-12-04
  */
 public interface ArticleInfoService extends IService<ArticleInfo> {
+    String insertArticleInfo(ArticleInfo articleInfo, String categoryName, String tagName);
 
+    String insertArticleInfo(ArticleInfo articleInfo);
 }

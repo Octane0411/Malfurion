@@ -36,10 +36,5 @@ public class ArticleContent extends SuperEntity {
     @ApiModelProperty(value = "信息id")
     private Long infoId;
 
-    private Integer deleted;
-
-    @TableLogic
-    private Integer version;
-
 
 }

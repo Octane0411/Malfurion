@@ -36,10 +36,6 @@ public class ArticleMark extends SuperEntity {
     @ApiModelProperty(value = "文章信息id")
     private Long infoId;
 
-    private Integer deleted;
-
-    @TableLogic
-    private Integer version;
 
 
 }

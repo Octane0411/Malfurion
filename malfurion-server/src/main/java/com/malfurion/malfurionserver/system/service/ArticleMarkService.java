@@ -12,5 +12,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2021-12-04
  */
 public interface ArticleMarkService extends IService<ArticleMark> {
+    String insertArticleMark(ArticleMark articleMark);
 
 }

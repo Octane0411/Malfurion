@@ -34,10 +34,6 @@ public class Category extends SuperEntity {
     @ApiModelProperty(value = "父分类，为空则为顶级分类")
     private Long categoryFatherId;
 
-    private Integer deleted;
-
-    @TableLogic
-    private Integer version;
 
 
 }

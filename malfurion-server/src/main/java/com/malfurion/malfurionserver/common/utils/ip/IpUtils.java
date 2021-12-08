@@ -1,15 +1,13 @@
-package com.ruoyi.common.utils.ip;
+package com.malfurion.malfurionserver.common.utils.ip;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import javax.servlet.http.HttpServletRequest;
-import com.ruoyi.common.utils.StringUtils;
-import com.ruoyi.common.utils.html.EscapeUtil;
+import com.malfurion.malfurionserver.common.utils.StringUtils;
+import com.malfurion.malfurionserver.common.utils.html.EscapeUtil;
 
 /**
  * 获取IP方法
- * 
- * @author ruoyi
  */
 public class IpUtils
 {

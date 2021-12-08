@@ -42,10 +42,5 @@ public class ArticleComment extends SuperEntity {
     @ApiModelProperty(value = "信息id")
     private Long infoId;
 
-    @TableLogic
-    private Integer version;
-
-    private Integer deleted;
-
 
 }

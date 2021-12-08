@@ -1,4 +1,4 @@
-package com.malfurion.malfurionserver.common.core.exception.base;
+package com.malfurion.malfurionserver.common.exception.base;
 
 import com.malfurion.malfurionserver.common.utils.MessageUtils;
 import com.malfurion.malfurionserver.common.utils.StringUtils;

@@ -33,10 +33,6 @@ public class Tag extends SuperEntity {
     @ApiModelProperty(value = "标签名字")
     private String tagName;
 
-    private Integer deleted;
-
-    @TableLogic
-    private Integer version;
 
 
 }

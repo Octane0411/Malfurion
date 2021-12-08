@@ -37,4 +37,11 @@ public class CategoryDaoImpl implements CategoryDao {
         wrapper.eq("category_id", id);
         return categoryMapper.selectOne(wrapper);
     }
+
+    @Override
+    public Category selectCategoryByName(String name) {
+        QueryWrapper<Category> wrapper = new QueryWrapper<>();
+        wrapper.eq("category_name", name);
+        return categoryMapper.selectOne(wrapper);
+    }
 }
