@@ -1,7 +1,6 @@
-package com.ruoyi.common.utils.sql;
+package com.malfurion.malfurionserver.common.utils.sql;
 
-import com.ruoyi.common.exception.UtilException;
-import com.ruoyi.common.utils.StringUtils;
+import com.malfurion.malfurionserver.common.utils.StringUtils;
 
 /**
  * sql操作工具类
@@ -22,7 +21,7 @@ public class SqlUtil
     {
         if (StringUtils.isNotEmpty(value) && !isValidOrderBySql(value))
         {
-            throw new UtilException("参数不符合规范，不能进行查询");
+            return null;
         }
         return value;
     }

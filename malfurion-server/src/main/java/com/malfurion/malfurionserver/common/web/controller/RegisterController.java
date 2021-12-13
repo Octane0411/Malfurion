@@ -23,7 +23,6 @@ public class RegisterController extends SuperController {
     @PostMapping("/register")
     public AjaxResult register(@RequestBody User user) {
         logger.debug("register called:" + user.toString());
-        System.out.println("register called:" + user.toString());
         String msg = registerService.register(user);
         return StringUtils.isEmpty(msg) ? success() : error(msg);
     }

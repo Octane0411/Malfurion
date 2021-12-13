@@ -15,4 +15,8 @@ public interface CategoryDao {
     Category selectCategoryById(Long id);
 
     Category selectCategoryByName(String name);
+
+    int updateCategory(Category category);
+
+    int deleteCategory(long id);
 }

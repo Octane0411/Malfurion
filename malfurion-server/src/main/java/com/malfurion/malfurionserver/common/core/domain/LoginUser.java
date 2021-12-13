@@ -1,5 +1,6 @@
 package com.malfurion.malfurionserver.common.core.domain;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 
@@ -8,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.alibaba.fastjson.annotation.JSONField;
 
@@ -68,7 +70,9 @@ public class LoginUser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        ArrayList<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(user.getUserType()));
+        return authorities;
     }
 
     @Override

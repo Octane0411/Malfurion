@@ -1,18 +1,21 @@
 package com.malfurion.malfurionserver.system.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.malfurion.malfurionserver.common.core.redis.RedisCache;
 import com.malfurion.malfurionserver.system.dao.ArticleContentDao;
 import com.malfurion.malfurionserver.system.dao.impl.ArticleInfoDaoImpl;
 import com.malfurion.malfurionserver.system.entity.ArticleContent;
 import com.malfurion.malfurionserver.system.entity.ArticleInfo;
 import com.malfurion.malfurionserver.system.mapper.ArticleContentMapper;
 import com.malfurion.malfurionserver.system.service.ArticleContentService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author octane
@@ -20,11 +23,17 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ArticleContentServiceImpl extends ServiceImpl<ArticleContentMapper, ArticleContent> implements ArticleContentService {
+    private static Logger logger = LoggerFactory.getLogger(ArticleContentService.class);
     @Autowired
     ArticleContentDao articleContentDao;
 
     @Autowired
     ArticleInfoDaoImpl articleInfoDao;
+
+    @Autowired
+    RedisCache redisCache;
+
+    private int expireTime = 30;
 
     @Override
     public String insertArticleContent(ArticleContent articleContent) {
@@ -59,5 +68,31 @@ public class ArticleContentServiceImpl extends ServiceImpl<ArticleContentMapper,
             }
         }
         return msg;
+    }
+
+    public ArticleContent selectArticleContentById(long contentId) {
+        ArticleContent articleContent = articleContentDao.selectArticleContentById(contentId);
+        if (articleContent != null) {
+            saveViewsInfoToRedis(articleContent.getInfoId());
+        }
+        return articleContent;
+    }
+
+    public ArticleContent selectArticleContentByInfoId(long infoId) {
+        ArticleContent articleContent = articleContentDao.selectArticleContentByInfoId(infoId);
+        if (articleContent != null) {
+            saveViewsInfoToRedis(articleContent.getInfoId());
+        }
+        return articleContent;
+    }
+
+    public void saveViewsInfoToRedis(long infoId) {
+        String infoKey = "infoView:" + infoId;
+        Integer articleInfoView =  redisCache.getCacheObject(infoKey);
+        if (articleInfoView == null) {
+            articleInfoView = 0;
+        }
+        articleInfoView++;
+        redisCache.setCacheObject(infoKey, articleInfoView);
     }
 }

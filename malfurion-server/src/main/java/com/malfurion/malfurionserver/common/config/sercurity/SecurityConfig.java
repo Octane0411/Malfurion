@@ -14,12 +14,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.web.filter.CorsFilter;
+
+import javax.sql.DataSource;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -40,12 +40,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
+    @Autowired
+    DataSource dataSource;
+
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception
     {
         return super.authenticationManagerBean();
     }
+
 
     /**
      * anyRequest          |   匹配所有请求路径
@@ -91,8 +95,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/webjars/**").anonymous()
                 .antMatchers("/*/api-docs").anonymous()
                 .antMatchers("/druid/**").anonymous()
+/*                .antMatchers(HttpMethod.GET, "/category/**").anonymous()
+                .antMatchers(HttpMethod.GET, "/tag/**").anonymous()
+                .antMatchers(HttpMethod.POST, "/article-info/**").anonymous()
+                .antMatchers(HttpMethod.GET, "/article-content/**").anonymous()*/
                 // 除上面外的所有请求全部需要鉴权认证
-                .anyRequest().authenticated()
+                //.anyRequest().authenticated()
+                .anyRequest().permitAll()
                 .and()
                 .headers().frameOptions().disable();
         httpSecurity.logout().logoutUrl("/logout").logoutSuccessHandler(myLogoutSuccessHandler);
@@ -118,4 +127,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     {
         auth.userDetailsService(myUserDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
+/*    @Bean
+    public PersistentTokenRepository tokenRepository() {
+        JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+        jdbcTokenRepository.setDataSource(dataSource);
+        //第一次为true
+        //jdbcTokenRepository.setCreateTableOnStartup(true);
+        return jdbcTokenRepository;
+    }*/
 }

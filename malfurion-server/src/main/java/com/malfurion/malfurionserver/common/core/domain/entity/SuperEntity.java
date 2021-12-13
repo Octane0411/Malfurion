@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class SuperEntity implements Serializable {
 
@@ -16,6 +15,7 @@ public class SuperEntity implements Serializable {
 
     /** 创建者 */
     @TableField(fill = FieldFill.INSERT)
+    @JsonFormat
     private String createBy;
 
     /** 创建时间 */
@@ -25,6 +25,7 @@ public class SuperEntity implements Serializable {
 
     /** 更新者 */
     @TableField(fill = FieldFill.INSERT_UPDATE)
+    @JsonFormat
     private String updateBy;
 
     /** 更新时间 */

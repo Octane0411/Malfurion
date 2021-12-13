@@ -1,10 +1,9 @@
 package com.malfurion.malfurionserver.system.service;
 
-import com.malfurion.malfurionserver.system.dao.ArticleCommentDao;
-import com.malfurion.malfurionserver.system.dao.impl.ArticleCommentDaoImpl;
-import com.malfurion.malfurionserver.system.entity.ArticleComment;
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.malfurion.malfurionserver.system.entity.ArticleComment;
+
+import java.util.List;
 
 /**
  * <p>
@@ -15,5 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @since 2021-12-04
  */
 public interface ArticleCommentService extends IService<ArticleComment> {
-    int insertArticleComment(ArticleComment articleComment);
+    String insertArticleComment(ArticleComment articleComment);
+
+    List<ArticleComment> selectArticleComments(long infoId);
+
+    String deleteArticleComment(long commentId);
+
+    String updateArticleComment(ArticleComment articleComment);
 }

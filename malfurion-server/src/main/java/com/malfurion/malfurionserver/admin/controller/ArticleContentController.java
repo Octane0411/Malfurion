@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.malfurion.malfurionserver.common.core.controller.SuperController;
-
 /**
  * <p>
  *  前端控制器
@@ -29,7 +28,13 @@ public class ArticleContentController extends SuperController {
         return StringUtils.isEmpty(msg) ? AjaxResult.success():AjaxResult.error(msg);
     }
 
-    @PostMapping("/{id}")
+    @GetMapping("/{id}")
+    public Object selectArticleContent(@PathVariable("id") long contentId) {
+        ArticleContent articleContent = articleContentService.selectArticleContentById(contentId);
+        return articleContent == null ? AjaxResult.error() : articleContent;
+    }
+
+    @PutMapping("/{id}")
     public AjaxResult updateArticleContent(@RequestBody ArticleContent articleContent, @PathVariable("id") long contentId) {
         String msg = "";
         if (articleContent.getContentId() != contentId) {

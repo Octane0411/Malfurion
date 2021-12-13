@@ -1,7 +1,8 @@
 package com.malfurion.malfurionserver.common.utils;
 
-import com.malfurion.malfurionserver.common.constant.HttpStatus;
 import com.malfurion.malfurionserver.common.core.domain.LoginUser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -10,10 +11,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  * 安全服务工具类
  */
 public class SecurityUtils {
+    private static Logger logger = LoggerFactory.getLogger(SecurityUtils.class);
     /**
      * 用户ID
      **/
     public static Long getUserId() {
+        LoginUser loginUser = getLoginUser();
+        if (loginUser == null) {
+            return -1L;
+        }
         return getLoginUser().getUserId();
     }
 
@@ -39,8 +45,14 @@ public class SecurityUtils {
         if (principal instanceof LoginUser) {
             return (LoginUser) principal;
         } else if (principal instanceof String) {
-            LoginUser loginUser = new LoginUser();
-            return (LoginUser) principal;
+            LoginUser loginUser = null;
+            try {
+                loginUser = (LoginUser) principal;
+            } catch (ClassCastException e) {
+                logger.info("又是你！！！不登录就发请求！！");
+            } finally {
+                return loginUser;
+            }
         } else {
             return (LoginUser) principal;
         }

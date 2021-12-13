@@ -19,4 +19,6 @@ public interface UserMapper extends BaseMapper<User> {
     int insertUser(User user);
 
     List<User> selectUserList();
+
+    List<Long> selectUserIdList();
 }

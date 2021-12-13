@@ -1,8 +1,10 @@
 package com.malfurion.malfurionserver.system.mapper;
 
-import com.malfurion.malfurionserver.system.entity.ArticleMark;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.malfurion.malfurionserver.system.entity.ArticleMark;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,5 +16,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface ArticleMarkMapper extends BaseMapper<ArticleMark> {
-
+    List<Long> selectArticleMarkByUserId(long userId);
 }

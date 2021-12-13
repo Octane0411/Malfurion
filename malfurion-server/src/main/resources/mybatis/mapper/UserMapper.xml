@@ -11,4 +11,9 @@
         select *
         from malfurion.user;
     </select>
+
+    <select id="selectUserIdList" resultType="long">
+        select user_id
+        from malfurion.user;
+    </select>
 </mapper>

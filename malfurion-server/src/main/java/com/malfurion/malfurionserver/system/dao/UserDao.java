@@ -15,4 +15,6 @@ public interface UserDao {
     int updateUser(User user);
 
     User selectUserById(Long id);
+
+    List<Long> selectUserIdList();
 }

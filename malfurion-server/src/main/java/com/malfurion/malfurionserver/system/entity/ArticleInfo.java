@@ -1,9 +1,8 @@
 package com.malfurion.malfurionserver.system.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.malfurion.malfurionserver.common.core.domain.entity.SuperEntity;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.malfurion.malfurionserver.common.core.domain.entity.SuperEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -32,6 +31,9 @@ public class ArticleInfo extends SuperEntity {
 
     @ApiModelProperty(value = "文章标题")
     private String title;
+
+    @ApiModelProperty(value = "文章简介")
+    private String summary;
 
     @ApiModelProperty(value = "文章作者id")
     private Long authorId;

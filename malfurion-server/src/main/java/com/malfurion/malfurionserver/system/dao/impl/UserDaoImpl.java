@@ -42,4 +42,9 @@ public class UserDaoImpl implements UserDao {
         wrapper.eq("user_id", id);
         return userMapper.selectOne(wrapper);
     }
+
+    @Override
+    public List<Long> selectUserIdList() {
+        return userMapper.selectUserIdList();
+    }
 }
